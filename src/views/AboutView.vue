@@ -90,21 +90,21 @@
     </header>
     <main>
       <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-        <!-- Your content -->
+        <ChartTest />
       </div>
     </main>
   </div>
 </template>
 
 <script setup lang="ts">
+import ChartTest from '../components/charts/ChartTest.vue'
 import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/vue'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/vue/24/outline'
 
 const navigation = [
   { name: 'Dashboard', href: '#', current: true },
-  { name: 'Team', href: '#', current: false },
-  { name: 'Projects', href: '#', current: false },
-  { name: 'Calendar', href: '#', current: false },
+  { name: 'KPIs', href: '#', current: false },
+  { name: 'Stats', href: '#', current: false },
   { name: 'Reports', href: '#', current: false },
 ]
 </script>

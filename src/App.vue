@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
+import DashboardView from './views/DashboardView.vue'
 import { useI18n } from 'vue-i18n'
 
 const { t } = useI18n()
@@ -16,6 +17,7 @@ const { t } = useI18n()
       <nav>
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/about">About</RouterLink>
+        <RouterLink to="/dashboard">Dashboard</RouterLink>
       </nav>
     </div>
   </header>

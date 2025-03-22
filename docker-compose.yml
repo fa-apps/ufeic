@@ -1,0 +1,13 @@
+version: '3.8'
+services:
+  app:
+    build: .
+    ports:
+      - '8080:80'
+  api:
+    image: 'ghcr.io/upciti/front-end-interview-fake-api:main'
+    restart: always
+    environment:
+      FRONT_URL: 'http://localhost:5173'
+    ports:
+      - 3000:3000
