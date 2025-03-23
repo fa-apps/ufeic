@@ -1,56 +1,76 @@
 <script setup lang="ts">
-import { Bar } from 'vue-chartjs'
-import {
-  Chart as ChartJS,
-  Title,
-  Tooltip,
-  Legend,
-  BarElement,
-  CategoryScale,
-  LinearScale,
-} from 'chart.js'
-import { computed } from 'vue'
 import { useDataStore } from '../../stores/data'
-
-ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale)
+import { useI18n } from 'vue-i18n'
+import VueApexCharts from 'vue3-apexcharts'
+import { ref } from 'vue'
+import type { ApexOptions } from 'apexcharts'
 
 const dataStore = useDataStore()
+const { t } = useI18n()
 
 const weekdays: Record<string, string> = {
-  1: 'Lundi',
-  2: 'Mardi',
-  3: 'Mercredi',
-  4: 'Jeudi',
-  5: 'Vendredi',
-  6: 'Samedi',
-  7: 'Dimanche',
+  1: t('label.monday'),
+  2: t('label.tuesday'),
+  3: t('label.wednesday'),
+  4: t('label.thursday'),
+  5: t('label.friday'),
+  6: t('label.saturday'),
+  7: t('label.sunday'),
 }
 
-const chartData = computed(() => ({
-  labels: Object.keys(dataStore.data?.hourlyAveragesByWeekday || {}).map((day) => weekdays[day]),
-  datasets: [
-    {
-      label: 'Moyenne par jour',
-      backgroundColor: '#42b883',
-      data: Object.values(dataStore.data?.hourlyAveragesByWeekday || {}),
+const hourlyAveragesByWeekday = dataStore.data?.hourlyAveragesByWeekday || {}
+const apexChartOptions = ref<ApexOptions>({
+  chart: {
+    id: 'hourly-averages_by_weekday',
+  },
+  xaxis: {
+    categories: Object.keys(hourlyAveragesByWeekday).map((day) => weekdays[day]),
+    title: {
+      text: t('label.dayOfWeek'),
     },
-  ],
-}))
+  },
+  dataLabels: {
+    enabled: false,
+  },
+  yaxis: {
+    title: {
+      text: t('label.averageValues'),
+    },
+  },
+  title: {
+    text: t('title.hourlyAveragesByWeekday'),
+  },
+  fill: {
+    type: 'gradient',
+    gradient: {
+      shadeIntensity: 1,
+      opacityFrom: 0.7,
+      opacityTo: 0.9,
+      stops: [0, 90, 100],
+    },
+  },
+})
 
-const chartOptions = {
-  responsive: true,
-  maintainAspectRatio: false,
-}
+const series = ref([
+  {
+    name: 'Average',
+    data: Object.values(hourlyAveragesByWeekday),
+  },
+])
 </script>
 
 <template>
-  <div class="container mx-auto p-4">
-    <div class="grid grid-cols-1 md:grid-cols-1 gap-4">
-      <div class="bg-white rounded-lg shadow-md p-6 flex items-center">
-        <Bar v-if="dataStore.data" :data="chartData" :options="chartOptions" />
-        <p v-else-if="dataStore.loading">Chargement...</p>
-        <p v-else-if="dataStore.error">Erreur : {{ dataStore.error.toString() }}</p>
-      </div>
+  <div class="container mx-auto md:p-10 p-0">
+    <div class="bg-white rounded-lg shadow-md p-2 border border-gray-100">
+      <vue-apex-charts
+        v-if="dataStore.data"
+        type="area"
+        :options="apexChartOptions"
+        :series="series"
+        height="400"
+      ></vue-apex-charts>
+      <p v-else-if="dataStore.loading">{{ t('message.loading') }}</p>
+      <p v-else-if="dataStore.error">{{ t('label.error') }} : {{ dataStore.error.toString() }}</p>
     </div>
   </div>
 </template>

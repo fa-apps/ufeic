@@ -1,5 +1,10 @@
 {
   "message": {
-    "youDidIt": "Yeahhh you did it!"
+    "appTitle": "App title",
+    "appDesc": "App desc"
+  },
+  "label": {
+    "hourWithHighestAverage": "Heure avec la moyenne la plus élevée",
+    "hourWithLowestAverage": "Heure avec la moyenne la plus basse"
   }
 }

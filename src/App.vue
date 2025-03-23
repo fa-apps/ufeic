@@ -1,23 +1,18 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
-import DashboardView from './views/DashboardView.vue'
-import { useI18n } from 'vue-i18n'
-
-const { t } = useI18n()
+import AppIntro from './components/AppIntro.vue'
+import LocaleSwitcher from '@/components/LocaleSwitcher.vue'
 </script>
 
 <template>
   <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
-
+    <img alt="Vue logo" class="logo" src="@/assets/logo.png" width="125" height="125" />
     <div class="wrapper">
-      <HelloWorld :msg="t('message.youDidIt')" />
-
+      <AppIntro />
+      <LocaleSwitcher />
       <nav>
-        <RouterLink to="/">Home</RouterLink>
+        <RouterLink to="/">Dashboard</RouterLink>
         <RouterLink to="/about">About</RouterLink>
-        <RouterLink to="/dashboard">Dashboard</RouterLink>
       </nav>
     </div>
   </header>

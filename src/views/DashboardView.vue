@@ -13,14 +13,11 @@ onMounted(() => {
 </script>
 
 <template>
-  <div>
-    <h2>Moyennes horaires</h2>
+  <div v-if="dataStore.data">
     <HourlyAveragesChart />
 
-    <h2>Moyennes par jour de la semaine</h2>
     <WeekdayAveragesChart />
 
-    <h2>Valeurs extrêmes</h2>
     <ExtremeValues />
   </div>
 </template>
