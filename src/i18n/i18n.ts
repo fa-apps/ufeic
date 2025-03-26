@@ -1,7 +1,6 @@
 import { createI18n } from 'vue-i18n'
 import en from './locales/en.json'
 import fr from './locales/fr.json'
-console.log(localStorage.getItem('locale'))
 const i18n = createI18n({
   legacy: false,
   locale: JSON.parse(localStorage.getItem('locale') || '"en"'),

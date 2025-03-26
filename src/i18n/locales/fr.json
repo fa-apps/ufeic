@@ -1,10 +1,38 @@
 {
   "message": {
-    "appTitle": "Titre de l'App",
-    "appDesc": "Desc de l'App"
+    "appTitle": "Titre de l'application",
+    "appDesc": "Description de l'application"
   },
   "label": {
-    "hourWithHighestAverage": "Hour with highest average",
-    "hourWithLowestAverage": "Hour with lowest average"
+    "hourWithHighestAverage": "Heure avec la moyenne la plus élevée",
+    "hourWithLowestAverage": "Heure avec la moyenne la plus basse",
+    "maps": "Cartes",
+    "about": "À propos",
+    "dashboard": "Tableau de bord",
+    "settings": "Paramètres",
+    "hourlyCharts": "Moyennes horaires",
+    "hours": "Heures",
+    "averageValues": "Valeurs moyennes",
+    "monday": "lundi",
+    "tuesday": "mardi",
+    "wednesday": "mercredi",
+    "thursday": "jeudi",
+    "friday": "vendredi",
+    "saturday": "samedi",
+    "sunday": "dimanche",
+    "dayOfWeek": "Jour de semaine",
+    "languageSettings": "Paramètres de langue",
+    "currentLanguage": "Langue actuelle",
+    "weekAverages": "Moyennes hebdomadaires"
+  },
+  "title": {
+    "hourlyAverages": "Moyennes horaires",
+    "hourlyAveragesByWeekday": "Moyennes horaires par jour de semaine",
+    "highestAverage": "Moyenne la plus élevée",
+    "lowestAverage": "Moyenne la plus basse",
+    "maps": "Plans",
+    "about": "À propos",
+    "appTitle": "Front-end Challenge",
+    "overallHourlyAverage": "Moyenne horaire globale"
   }
 }

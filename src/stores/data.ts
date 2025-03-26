@@ -6,6 +6,7 @@ interface Data {
   hourlyAveragesByWeekday: Record<string, number>
   hourWithHighestAverage: { value: number; time: string }
   hourWithLowestAverage: { value: number; time: string }
+  overallHourlyAverage: number
 }
 
 interface DataState {

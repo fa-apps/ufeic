@@ -8,19 +8,17 @@ const dataStore = useDataStore()
 const { t } = useI18n()
 
 const hourlyAverages = dataStore.data?.hourlyAverages || {}
+const overallHourlyAverage = dataStore.data?.overallHourlyAverage || 0
+
 const apexChartOptions = ref<ApexOptions>({
   chart: {
     id: 'hourly-averages',
-    height: '400px',
   },
   xaxis: {
     categories: Object.keys(hourlyAverages),
     title: {
       text: t('label.hours'),
     },
-  },
-  dataLabels: {
-    enabled: false,
   },
   yaxis: {
     title: {
@@ -30,31 +28,27 @@ const apexChartOptions = ref<ApexOptions>({
   title: {
     text: t('title.hourlyAverages'),
   },
-  fill: {
-    type: 'gradient',
-    gradient: {
-      shadeIntensity: 1,
-      opacityFrom: 0.7,
-      opacityTo: 0.9,
-      stops: [0, 90, 100],
-    },
-  },
+  colors: ['#6875F5', '#B4C6FC'],
 })
 
 const series = ref([
   {
-    name: 'Average',
+    name: t('label.average'),
     data: Object.values(hourlyAverages),
+  },
+  {
+    name: t('label.overallMean'),
+    data: Object.keys(hourlyAverages).map(() => overallHourlyAverage),
   },
 ])
 </script>
 
 <template>
-  <div class="container mx-auto md:p-10 p-0 my-3">
+  <div class="container mx-auto md:p-2 p-0">
     <div class="border border-gray-100 bg-white rounded-lg shadow-md p-2">
       <vue-apex-charts
         v-if="dataStore.data"
-        type="area"
+        type="line"
         :options="apexChartOptions"
         :series="series"
         height="400"

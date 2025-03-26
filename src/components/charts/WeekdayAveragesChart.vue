@@ -42,6 +42,7 @@ const apexChartOptions = ref<ApexOptions>({
   },
   fill: {
     type: 'gradient',
+    colors: ['#6875F5'],
     gradient: {
       shadeIntensity: 1,
       opacityFrom: 0.7,
@@ -53,14 +54,14 @@ const apexChartOptions = ref<ApexOptions>({
 
 const series = ref([
   {
-    name: 'Average',
+    name: t('label.average'),
     data: Object.values(hourlyAveragesByWeekday),
   },
 ])
 </script>
 
 <template>
-  <div class="container mx-auto md:p-10 p-0">
+  <div class="container mx-auto md:p-2 p-0">
     <div class="bg-white rounded-lg shadow-md p-2 border border-gray-100">
       <vue-apex-charts
         v-if="dataStore.data"

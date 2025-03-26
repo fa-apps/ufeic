@@ -4,7 +4,35 @@
     "appDesc": "App desc"
   },
   "label": {
-    "hourWithHighestAverage": "Heure avec la moyenne la plus élevée",
-    "hourWithLowestAverage": "Heure avec la moyenne la plus basse"
+    "hourWithHighestAverage": "Hour with highest average",
+    "hourWithLowestAverage": "Hour with lowest average",
+    "maps": "Maps",
+    "about": "About",
+    "dashboard": "Dashboard",
+    "settings": "Settings",
+    "hourlyCharts": "Hourly charts",
+    "hours": "Hours",
+    "averageValues": "Average values",
+    "monday": "monday",
+    "tuesday": "tuesday",
+    "wednesday": "wednesday",
+    "thursday": "thursday",
+    "friday": "friday",
+    "saturday": "saturday",
+    "sunday": "sunday",
+    "dayOfWeek": "Day of week",
+    "languageSettings": "Language settings",
+    "currentLanguage": "Current language",
+    "weekAverages": "Week averages"
+  },
+  "title": {
+    "hourlyAverages": "Hourly averages",
+    "hourlyAveragesByWeekday": "Hourly averages by weekday",
+    "highestAverage": "Highest average",
+    "lowestAverage": "Lowest average",
+    "maps": "Maps",
+    "about": "About",
+    "appTitle": "Front-end Challenge",
+    "overallHourlyAverage": "Overall hourly average"
   }
 }
