@@ -23,7 +23,11 @@
     "dayOfWeek": "Day of week",
     "languageSettings": "Language settings",
     "currentLanguage": "Current language",
-    "weekAverages": "Week averages"
+    "weekAverages": "Week averages",
+    "todo": "Work in progress...",
+    "hourlyAverage": "Hourly average",
+    "overallMean": "Overall mean",
+    "average": "Average"
   },
   "title": {
     "hourlyAverages": "Hourly averages",

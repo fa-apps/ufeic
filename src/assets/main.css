@@ -13,10 +13,10 @@
 }
 
 body {
-  background-color: rgb(243, 244, 246);
+  background-color: #f9fafb;
 }
 
-header span {
+header h1 {
   color: #5145cd;
   font-weight: 500;
 }

@@ -23,7 +23,11 @@
     "dayOfWeek": "Jour de semaine",
     "languageSettings": "Paramètres de langue",
     "currentLanguage": "Langue actuelle",
-    "weekAverages": "Moyennes hebdomadaires"
+    "weekAverages": "Moyennes hebdomadaires",
+    "todo": "Travail en cours...",
+    "hourlyAverage": "Moyenne horaire",
+    "overallMean": "Moyenne globale",
+    "average": "Moyenne"
   },
   "title": {
     "hourlyAverages": "Moyennes horaires",

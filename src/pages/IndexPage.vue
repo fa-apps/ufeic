@@ -15,6 +15,8 @@ import { RouterLink } from 'vue-router'
 const { t } = useI18n()
 const dataStore = useDataStore()
 
+const isMobile = () => window.innerWidth < 768
+
 onMounted(() => {
   dataStore.fetchData()
   initFlowbite()
@@ -45,6 +47,7 @@ onMounted(() => {
     >
       <div>
         <RouterLink
+          :data-drawer-toggle="isMobile() ? 'default-sidebar' : null"
           to="/"
           class="ps-2.5 mb-5 flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
         >
@@ -59,6 +62,7 @@ onMounted(() => {
         <ul class="space-y-2 font-medium">
           <li>
             <RouterLink
+              :data-drawer-toggle="isMobile() ? 'default-sidebar' : null"
               to="/"
               class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
             >
@@ -70,6 +74,7 @@ onMounted(() => {
           </li>
           <li>
             <RouterLink
+              :data-drawer-toggle="isMobile() ? 'default-sidebar' : null"
               to="/maps"
               class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
             >
@@ -84,6 +89,7 @@ onMounted(() => {
       <ul>
         <li>
           <RouterLink
+            :data-drawer-toggle="isMobile() ? 'default-sidebar' : null"
             to="/settings"
             class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
           >
@@ -95,6 +101,7 @@ onMounted(() => {
         </li>
         <li>
           <RouterLink
+            :data-drawer-toggle="isMobile() ? 'default-sidebar' : null"
             to="/about"
             class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
           >

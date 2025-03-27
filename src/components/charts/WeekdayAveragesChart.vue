@@ -37,9 +37,6 @@ const apexChartOptions = ref<ApexOptions>({
       text: t('label.averageValues'),
     },
   },
-  title: {
-    text: t('title.hourlyAveragesByWeekday'),
-  },
   fill: {
     type: 'gradient',
     colors: ['#6875F5'],
@@ -62,14 +59,15 @@ const series = ref([
 
 <template>
   <div class="container mx-auto md:p-2 p-0">
-    <div class="bg-white rounded-lg shadow-md p-2 border border-gray-100">
-      <vue-apex-charts
+    <div class="border border-gray-200 bg-white rounded-lg p-6">
+      <h2 class="font-semibold mb-4">{{ t('title.hourlyAveragesByWeekday') }}</h2>
+      <VueApexCharts
         v-if="dataStore.data"
         type="area"
         :options="apexChartOptions"
         :series="series"
-        height="400"
-      ></vue-apex-charts>
+        height="320"
+      />
       <p v-else-if="dataStore.loading">{{ t('message.loading') }}</p>
       <p v-else-if="dataStore.error">{{ t('label.error') }} : {{ dataStore.error.toString() }}</p>
     </div>

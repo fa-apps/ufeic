@@ -50,8 +50,7 @@ describe('SettingsView.vue', () => {
   })
 
   it('should have the correct CSS classes for the title', async () => {
-    expect(wrapper.find('h1').classes()).toContain('text-lg')
-    expect(wrapper.find('h1').classes()).toContain('border-b-2')
-    expect(wrapper.find('h1').classes()).toContain('border-blue-600')
+    expect(wrapper.find('h1').classes()).toContain('flex-1')
+    expect(wrapper.find('h1').classes()).toContain('whitespace-nowrap')
   })
 })
