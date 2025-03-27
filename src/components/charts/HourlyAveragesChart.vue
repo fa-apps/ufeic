@@ -41,7 +41,7 @@ const series = ref([
 </script>
 
 <template>
-  <div class="container mx-auto md:p-2 p-0">
+  <div class="container md:p-2 p-0 max-w-[450px]">
     <div class="border border-gray-200 bg-white rounded-lg p-6">
       <h2 class="font-semibold mb-4">{{ t('title.hourlyAverages') }}</h2>
       <VueApexCharts

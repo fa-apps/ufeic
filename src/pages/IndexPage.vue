@@ -24,17 +24,24 @@ onMounted(() => {
 </script>
 
 <template>
-  <button
-    data-drawer-target="default-sidebar"
-    data-drawer-toggle="default-sidebar"
-    aria-controls="default-sidebar"
-    type="button"
-    class="inline-flex items-center p-2 mt-2 ms-3 text-sm text-gray-500 border border-indigo-400 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-  >
-    <Bars3BottomLeftIcon
-      class="w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
-    />
-  </button>
+  <div class="flex justify-between sm:hidden p-2">
+    <button
+      data-drawer-target="default-sidebar"
+      data-drawer-toggle="default-sidebar"
+      aria-controls="default-sidebar"
+      class="inline-flex items-center px-3 text-gray-500 border-2 border-indigo-400 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
+    >
+      <Bars3BottomLeftIcon
+        class="w-6 h-6 text-indigo-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+      />
+    </button>
+    <div class="flex gap-2 m-1">
+      <div class="flex flex-col justify-center">
+        <span class="text-indigo-700 font-bold">{{ t('title.appTitle') }}</span>
+      </div>
+      <img alt="App logo" class="h-12 w-12" src="@/assets/logo.png" />
+    </div>
+  </div>
 
   <aside
     id="default-sidebar"

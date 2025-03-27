@@ -32,7 +32,7 @@ onMounted(() => {
           >
             {{ t('label.hourlyCharts') }}
           </h1>
-          <div class="flex flex-col md:flex-row gap-3">
+          <div class="flex flex-col md:flex-row gap-3 justify-start">
             <HourlyAveragesChart />
             <WeekdayAveragesChart />
           </div>

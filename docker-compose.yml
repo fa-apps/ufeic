@@ -3,7 +3,7 @@ services:
   app:
     build: .
     ports:
-      - '8080:80'
+      - '5173:80'
   api:
     image: 'ghcr.io/upciti/front-end-interview-fake-api:main'
     restart: always
