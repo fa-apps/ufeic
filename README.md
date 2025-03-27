@@ -48,9 +48,10 @@ This project is the result for a Front-end interview challenge. It's a basic das
 
 ## Conclusion
 
-I hope this project will help to demonstrates my ability to build a modern web application using the latest technologies and best practices. I focused on maintainability, performance, and user experience to create a robust and scalable application.
+I hope this project will help to demonstrate my ability to build a modern web application using the latest technologies and best practices. I focused on maintainability, performance, and user experience to create a robust and scalable application.
 
 ## Missing features
 
 - Dark mode
 - Spinners for data loading
+- Footer
