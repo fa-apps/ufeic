@@ -2,7 +2,7 @@
 import { useDataStore } from '../../stores/data'
 import { useI18n } from 'vue-i18n'
 import VueApexCharts from 'vue3-apexcharts'
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 import type { ApexOptions } from 'apexcharts'
 
 const dataStore = useDataStore()
@@ -18,13 +18,22 @@ const weekdays: Record<string, string> = {
   7: t('label.sunday'),
 }
 
-const hourlyAveragesByWeekday = dataStore.data?.hourlyAveragesByWeekday || {}
+interface WeekdayAverages {
+  [weekday: string]: number
+}
+
+interface Props {
+  hourlyAveragesByWeekday: WeekdayAverages
+}
+
+const props = defineProps<Props>()
+
 const apexChartOptions = ref<ApexOptions>({
   chart: {
     id: 'hourly-averages_by_weekday',
   },
   xaxis: {
-    categories: Object.keys(hourlyAveragesByWeekday).map((day) => weekdays[day]),
+    categories: Object.keys(props.hourlyAveragesByWeekday).map((day) => weekdays[day]),
     title: {
       text: t('label.dayOfWeek'),
     },
@@ -52,9 +61,19 @@ const apexChartOptions = ref<ApexOptions>({
 const series = ref([
   {
     name: t('label.average'),
-    data: Object.values(hourlyAveragesByWeekday),
+    data: Object.values(props.hourlyAveragesByWeekday),
   },
 ])
+
+watch(
+  () => props.hourlyAveragesByWeekday,
+  (newWeekdayAverages) => {
+    series.value[0].data = Object.values(newWeekdayAverages)
+    if (apexChartOptions.value.xaxis) {
+      apexChartOptions.value.xaxis.categories = Object.keys(newWeekdayAverages)
+    }
+  },
+)
 </script>
 
 <template>

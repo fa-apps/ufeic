@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { onMounted } from 'vue'
-import { initFlowbite } from 'flowbite'
+/* import { onMounted } from 'vue'
+import { initFlowbite } from 'flowbite' */
 import {
   MapIcon,
   ChartPieIcon,
@@ -9,18 +9,18 @@ import {
   Bars3BottomLeftIcon,
 } from '@heroicons/vue/24/solid'
 import { useI18n } from 'vue-i18n'
-import { useDataStore } from '../stores/data'
+//import { useDataStore } from '../stores/data'
 import { RouterLink } from 'vue-router'
 
 const { t } = useI18n()
-const dataStore = useDataStore()
+//const dataStore = useDataStore()
 
 const isMobile = () => window.innerWidth < 768
-
+/*
 onMounted(() => {
   dataStore.fetchData()
   initFlowbite()
-})
+}) */
 </script>
 
 <template>

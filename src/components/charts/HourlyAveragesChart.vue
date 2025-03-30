@@ -1,21 +1,29 @@
 <script setup lang="ts">
-import { useDataStore } from '../../stores/data'
 import { useI18n } from 'vue-i18n'
 import VueApexCharts from 'vue3-apexcharts'
-import { ref } from 'vue'
+import { ref, defineProps, watch } from 'vue'
 import type { ApexOptions } from 'apexcharts'
-const dataStore = useDataStore()
 const { t } = useI18n()
 
-const hourlyAverages = dataStore.data?.hourlyAverages || {}
-const overallHourlyAverage = dataStore.data?.overallHourlyAverage || 0
+interface HourlyAverages {
+  [hour: string]: number
+}
+
+interface Props {
+  hourlyAverages: HourlyAverages
+  overallHourlyAverage: number
+}
+
+const props = defineProps<Props>()
+
+console.log(props)
 
 const apexChartOptions = ref<ApexOptions>({
   chart: {
     id: 'hourly-averages',
   },
   xaxis: {
-    categories: Object.keys(hourlyAverages),
+    categories: Object.keys(props.hourlyAverages),
     title: {
       text: t('label.hours'),
     },
@@ -31,13 +39,25 @@ const apexChartOptions = ref<ApexOptions>({
 const series = ref([
   {
     name: t('label.hourlyAverage'),
-    data: Object.values(hourlyAverages),
+    data: Object.values(props.hourlyAverages),
   },
   {
     name: t('label.overallMean'),
-    data: Object.keys(hourlyAverages).map(() => overallHourlyAverage),
+    data: Object.keys(props.hourlyAverages).map(() => props.overallHourlyAverage),
   },
 ])
+
+watch(
+  () => props.hourlyAverages,
+  (newHourlyAverages) => {
+    series.value[0].data = Object.values(newHourlyAverages)
+    if (apexChartOptions.value.xaxis) {
+      apexChartOptions.value.xaxis.categories = Object.keys(newHourlyAverages)
+    }
+    series.value[1].data = Object.keys(newHourlyAverages).map(() => props.overallHourlyAverage)
+  },
+  { deep: true },
+)
 </script>
 
 <template>
@@ -45,14 +65,12 @@ const series = ref([
     <div class="border border-gray-200 bg-white rounded-lg p-6">
       <h2 class="font-semibold mb-4">{{ t('title.hourlyAverages') }}</h2>
       <VueApexCharts
-        v-if="dataStore.data"
+        v-if="props"
         type="line"
         :options="apexChartOptions"
         :series="series"
         height="320"
       />
-      <p v-else-if="dataStore.loading">{{ t('message.loading') }}</p>
-      <p v-else-if="dataStore.error">{{ t('label.error') }} : {{ dataStore.error.toString() }}</p>
     </div>
   </div>
 </template>

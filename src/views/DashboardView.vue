@@ -3,14 +3,33 @@ import HourlyAveragesChart from '../components/charts/HourlyAveragesChart.vue'
 import WeekdayAveragesChart from '../components/charts/WeekdayAveragesChart.vue'
 import WeekAverages from '../components/kpis/WeekAverages.vue'
 import { useDataStore } from '../stores/data'
-import { onMounted } from 'vue'
-import { ChartPieIcon } from '@heroicons/vue/24/solid'
+import { onMounted, ref } from 'vue'
+import { ChartPieIcon, ArrowDownTrayIcon } from '@heroicons/vue/24/solid'
 import { useI18n } from 'vue-i18n'
+
 const { t } = useI18n()
 const dataStore = useDataStore()
 
+interface HourlyAverages {
+  [hour: string]: number
+}
+interface WeekdayAverages {
+  [weekday: string]: number
+}
+
+const hourlyAverages = ref<HourlyAverages>({})
+const overallHourlyAverage = ref<number>(0)
+const hourlyAveragesByWeekday = ref<WeekdayAverages>({})
+
+const fetchData = async () => {
+  await dataStore.fetchData()
+  hourlyAverages.value = dataStore.data?.hourlyAverages || {}
+  overallHourlyAverage.value = dataStore.data?.overallHourlyAverage || 0
+  hourlyAveragesByWeekday.value = dataStore.data?.hourlyAveragesByWeekday || {}
+}
+
 onMounted(() => {
-  dataStore.fetchData()
+  fetchData()
 })
 </script>
 
@@ -22,6 +41,7 @@ onMounted(() => {
           class="w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
         />
         <h1 class="flex-1 ms-3 whitespace-nowrap">{{ t('label.dashboard') }}</h1>
+        <ArrowDownTrayIcon class="w-6 h-6 text-gray-500" @click="fetchData()" />
       </div>
     </header>
     <main>
@@ -33,8 +53,11 @@ onMounted(() => {
             {{ t('label.hourlyCharts') }}
           </h1>
           <div class="flex flex-col md:flex-row gap-3 justify-start">
-            <HourlyAveragesChart />
-            <WeekdayAveragesChart />
+            <HourlyAveragesChart
+              :hourlyAverages="hourlyAverages"
+              :overallHourlyAverage="overallHourlyAverage"
+            />
+            <WeekdayAveragesChart :hourlyAveragesByWeekday="hourlyAveragesByWeekday" />
           </div>
         </div>
         <div class="">

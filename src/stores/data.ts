@@ -44,6 +44,7 @@ export const useDataStore = defineStore('data', {
       } finally {
         this.loading = false
       }
+      return this.data
     },
   },
 })

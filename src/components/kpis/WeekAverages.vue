@@ -2,12 +2,26 @@
 import { useDataStore } from '../../stores/data'
 import { useI18n } from 'vue-i18n'
 import { ArrowUpCircleIcon, ArrowDownCircleIcon } from '@heroicons/vue/24/outline'
+import { ref, watchEffect } from 'vue'
 
 const { t, d } = useI18n()
 const dataStore = useDataStore()
-const average = { time: '', value: 0 }
-const lowestAverage = dataStore.data?.hourWithLowestAverage || average
-const highestAverage = dataStore.data?.hourWithHighestAverage || average
+
+interface Average {
+  time: string
+  value: number
+}
+
+const average: Average = { time: '', value: 0 }
+const lowestAverage = ref<Average>(dataStore.data?.hourWithLowestAverage || average)
+const highestAverage = ref<Average>(dataStore.data?.hourWithHighestAverage || average)
+
+watchEffect(() => {
+  if (dataStore.data) {
+    lowestAverage.value = dataStore.data.hourWithLowestAverage || average
+    highestAverage.value = dataStore.data.hourWithHighestAverage || average
+  }
+})
 </script>
 
 <template>
